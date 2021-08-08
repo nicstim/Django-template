@@ -1,7 +1,7 @@
 from .models import *
 
 
-def get_upload_to(instance, filename):
+def get_upload_to(instance, filename) -> str:
     """
       Returns the path to the media
     """
