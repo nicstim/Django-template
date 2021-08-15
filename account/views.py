@@ -1,16 +1,14 @@
-from django.contrib.auth import login
 from django.contrib.auth.views import LoginView
-from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.views.generic import FormView
 
 from config.views import common_context
-from .forms import UserRegistrationForm, UserLoginForm
+from .forms import UserRegistrationForm
 from .models import UserStatus
 
 
 class Registration(FormView):
-    template_name = "page/register.html"
+    template_name = "registration/register.html"
     form_class = UserRegistrationForm
     success_url = "/login/"
 
@@ -34,10 +32,6 @@ class Registration(FormView):
 
 
 class Login(LoginView):
-    template_name = "page/login.html"
-    success_url = '/'
-    authentication_form = UserLoginForm
-
     def get(self, request, *args, **kwargs):
         if request.user.is_authenticated:
             return redirect("/")
@@ -48,10 +42,3 @@ class Login(LoginView):
         context.update(common_context())
 
         return context
-
-    def form_invalid(self, form):
-        return self.render_to_response(self.get_context_data(form=form))
-
-    def form_valid(self, form):
-        login(self.request, form.get_user())
-        return HttpResponseRedirect(self.get_success_url())
