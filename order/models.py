@@ -51,3 +51,14 @@ class Cart(models.Model):
         cart = cls.get_cart(session=session_key, user=user)
 
         return cart
+
+
+class CartItem(models.Model):
+    cart = models.ForeignKey(Cart, verbose_name=_("Корзина"), on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = _("Товар в корзине")
+        verbose_name_plural = _("Товары в корзине")
+
+    def __str__(self):
+        return _(f"Товар #{self.id}")

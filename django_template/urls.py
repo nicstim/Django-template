@@ -2,7 +2,7 @@ from django.conf import settings
 from django.conf.urls import url
 from django.contrib import admin
 from django.contrib.auth.views import LogoutView
-from django.urls import path, include, re_path
+from django.urls import path, include
 from django.conf.urls.static import static
 from django.views.static import serve
 from django.conf.urls.i18n import i18n_patterns
@@ -22,6 +22,7 @@ urlpatterns += i18n_patterns(
     url(r'^', include('section.urls', namespace='section')),
     url(r'^feedback/', include('feedback.urls', namespace='feedback')),
     url(r'^', include('account.urls', namespace='account')),
+    prefix_default_language=False
 )
 
 if DEBUG:
