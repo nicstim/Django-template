@@ -1,3 +1,8 @@
 from django.contrib import admin
+from .models import Config
 
-# Register your models here.
+
+@admin.register(Config)
+class CfgAdmin(admin.ModelAdmin):
+    list_display = ['title', 'key', 'value']
+    list_editable = ['value']

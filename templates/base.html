@@ -1,4 +1,4 @@
-{% load i18n %}
+{% load i18n static %}
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -8,6 +8,26 @@
     {% endblock %}
 </head>
 <body>
+<header>
+    <div class="nav-menu">
+    <div class="nav-tem">
+        <a href="{% url 'section:index' %}">{% trans 'Главная' %}</a>
+    </div>
+        {% if request.user.is_authenticated %}
+            <div class="nav-item">
+                <a href="#">{% trans 'Профиль' %}</a>
+            </div>
+        {% else %}
+            <div class="nav-item">
+                <a href="{% url 'account:login' %}">{% trans 'Войти' %}</a>
+            </div>
+            <div class="nav-item">
+                <a href="{% url 'account:registration' %}">{% trans 'Регистрация' %}</a>
+            </div>
+
+        {% endif %}
+    </div>
+</header>
 {% block content %}
 {% endblock %}
 
