@@ -1,4 +1,4 @@
-from .models import *
+from .models import Config
 
 
 def get_upload_to(instance, filename) -> str:
