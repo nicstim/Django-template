@@ -5,7 +5,11 @@ def get_upload_to(instance, filename) -> str:
     """
       Returns the path to the media
     """
-    return 'upload/%d/%s' % (instance.id, filename)
+    try:
+        return f'{instance.IMAGE_PATH}/{instance.id}/{filename}'
+    except Exception:
+        # TODO: Exception?
+        return f'upload/{instance.id}/{filename}'
 
 
 def common_context() -> dict:
