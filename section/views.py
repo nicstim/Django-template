@@ -2,7 +2,17 @@ from django.http import Http404
 from django.views.generic import TemplateView
 
 from config.views import common_context
-from .models import *
+from .models import Section, Article
+
+
+class Index(TemplateView):
+    template_name = 'page/index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(Index, self).get_context_data(**kwargs)
+        context.update(common_context())
+
+        return context
 
 
 class SectionView(TemplateView):

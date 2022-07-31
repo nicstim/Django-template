@@ -1,8 +1,8 @@
 from django.urls import path
-from .views import *
+from .views import Index
 
 app_name = "section"
 
 urlpatterns = [
-
+    path('', Index.as_view(), name='index')
 ]
